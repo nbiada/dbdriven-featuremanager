@@ -1,0 +1,42 @@
+﻿@using DbDrivenFM.App.Services
+@using Microsoft.FeatureManagement
+@if (featureIsEnabled)
+
+{
+    @ChildContent
+}
+
+@code {
+    private bool featureIsEnabled = false;
+
+    [Parameter] public RenderFragment ChildContent { get; set; } = null!;
+    [Parameter] public string Name { get; set; } = string.Empty;
+    [Parameter] public bool UseDb { get; set; } = false;
+
+    // [Inject] 
+    // public IFeatureManager FeatureManager { get; set; } = null!;
+    
+    [Inject(Key = DbFeatureManager.Name)] 
+    public IFeatureManager FeatureManager { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrEmpty(Name)) return;
+
+        if (!UseDb) 
+        {
+            featureIsEnabled = false;
+            await foreach (var feature in FeatureManager.GetFeatureNamesAsync())
+            {
+                if (feature.Equals(Name, StringComparison.OrdinalIgnoreCase))
+                {
+                    featureIsEnabled = await FeatureManager.IsEnabledAsync(Name);
+                    break;
+                }
+            }
+        } else {
+            // featureIsEnabled = await TheDbFeatureManager.IsEnabledAsync(Name);
+        }
+    }
+}
+

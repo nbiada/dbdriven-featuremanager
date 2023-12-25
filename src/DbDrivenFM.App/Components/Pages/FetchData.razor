@@ -1,0 +1,43 @@
+﻿@page "/fetchdata"
+@using DbDrivenFM.App.Services
+@rendermode InteractiveServer
+
+<PageTitle>Fetch Data From DB</PageTitle>
+
+<h1>Fetch Data</h1>
+
+<div class="container-fluid p-4">
+    <p>This component demonstrates fetching data from the server.</p>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Enabled</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (featureFlags != null)
+            {
+                @foreach (var feature in featureFlags)
+                {
+                    <tr>
+                        <td>@feature.Name</td>
+                        <td>@feature.Enabled.ToString()</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    [Inject] IFetchDataService FetchDataService { get; set; } = null!;
+
+    private IReadOnlyCollection<FeatureFlag>? featureFlags;
+
+    protected override async Task OnInitializedAsync()
+    {
+        featureFlags = await FetchDataService.GetFeatureFlagAsync();
+    }
+
+}

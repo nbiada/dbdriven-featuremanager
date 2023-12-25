@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbDrivenFM.App", "DbDrivenFM.App\DbDrivenFM.App.csproj", "{F169811F-2D34-45EF-B6F5-4C1D566B59E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F169811F-2D34-45EF-B6F5-4C1D566B59E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F169811F-2D34-45EF-B6F5-4C1D566B59E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F169811F-2D34-45EF-B6F5-4C1D566B59E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F169811F-2D34-45EF-B6F5-4C1D566B59E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0587259-69D7-4E9C-A171-218401AA5FFC}
+	EndGlobalSection
+EndGlobal
