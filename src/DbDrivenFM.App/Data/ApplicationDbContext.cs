@@ -25,12 +25,18 @@ namespace DbDrivenFM.App.Data
                     {
                         Id = 1,
                         Name = FeatureConstants.Weather,
-                        Enabled = false
+                        Enabled = true
                     },
                     new FeatureFlag
                     {
                         Id = 2,
                         Name = FeatureConstants.Counter,
+                        Enabled = true
+                    },
+                    new FeatureFlag
+                    {
+                        Id = 3,
+                        Name = FeatureConstants.FetchData,
                         Enabled = true
                     });
             });
