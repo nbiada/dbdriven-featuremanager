@@ -10,7 +10,19 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
+    [Inject] IFeatureManager FeatureManager { get; set; }
+    [Inject] NavigationManager NavigationManager { get; set; }
+    
     private int currentCount = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!(await FeatureManager.IsEnabledAsync(FeatureConstants.Counter)))
+        {
+            NavigationManager.NavigateTo("", true);
+            return;
+        }
+    }
 
     private void IncrementCount()
     {

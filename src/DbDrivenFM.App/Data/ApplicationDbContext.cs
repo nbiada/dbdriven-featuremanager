@@ -1,3 +1,5 @@
+using DbDrivenFM.App.Components.Account.Pages.Manage;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +10,7 @@ namespace DbDrivenFM.App.Data
         IdentityDbContext<ApplicationUser>(options)
     {
         public DbSet<FeatureFlag> FeatureFlags => Set<FeatureFlag>();
+        public DbSet<Country> Countries => Set<Country>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -39,6 +42,27 @@ namespace DbDrivenFM.App.Data
                         Name = FeatureConstants.FetchData,
                         Enabled = true
                     });
+            });
+
+            builder.Entity<Country>(entity =>
+            {
+                entity.HasData(
+                    new Country
+                    {
+                        Id = 1,
+                        Name = "Italy"
+                    },
+                    new Country
+                    {
+                        Id = 2,
+                        Name = "USA"
+                    },
+                    new Country
+                    {
+                        Id = 3,
+                        Name = "Canada"
+                    }
+                );
             });
         }
     }

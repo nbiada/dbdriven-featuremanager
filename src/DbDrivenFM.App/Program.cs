@@ -15,7 +15,7 @@ builder.Services.AddStartupIdentity();
 builder.Services.AddStartupDatabase(builder.Configuration);
 
 
-builder.Services.AddScoped<IFetchDataService, FetchDataService>();
+builder.Services.AddScoped<IFeaturesDataService, FeaturesDataService>();
 
 // Register Feature Management and the custom feature filter
 //   - this is the original implementation with a custom DbFeatureFilter
@@ -25,6 +25,9 @@ builder.Services.AddScoped<IFetchDataService, FetchDataService>();
 // Register the custom Feature Manager
 //  - this is the Db driven implementations of the Feature Manager 
 builder.Services.AddScoped<IFeatureManager, DbFeatureManager>();
+
+// Register application services
+builder.Services.AddScoped<ICountryDataService, CountryDataService>();
 
 var app = builder.Build();
 

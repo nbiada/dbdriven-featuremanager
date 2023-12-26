@@ -2,8 +2,9 @@
 
 namespace DbDrivenFM.App.Services
 {
-    public interface IFetchDataService
+    public interface IFeaturesDataService
     {
         Task<IReadOnlyCollection<FeatureFlag>> GetFeatureFlagAsync();
+        Task Toggle(int featureId);
     }
 }

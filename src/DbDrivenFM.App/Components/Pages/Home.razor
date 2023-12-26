@@ -1,7 +1,57 @@
 ﻿@page "/"
+@using DbDrivenFM.App.Services
+@rendermode InteractiveServer
 
-<PageTitle>Home</PageTitle>
+<PageTitle>DB Driven Feature Manager</PageTitle>
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+<div class="container-fluid p-4">
+
+    <h1>DB Driven Feature Manager</h1>
+
+    <p>This component demonstrates how to enable/disable feature flags using a database as backend.</p>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Enabled</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (featureFlags != null)
+            {
+                @foreach (var feature in featureFlags.OrderBy(o => o.Name))
+                {
+                    <tr>
+                        <td>@feature.Name</td>
+                        <td>@feature.Enabled.ToString()</td>
+                        <td><button type="button" class="btn btn-outline-primary" 
+                                    @onclick="() => ToggleFeature(feature.Id)">Toggle</button></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    [Inject] NavigationManager NavigationManager { get; set; }
+    [Inject] IFeaturesDataService FeaturesDataService { get; set; } = null!;
+
+    private IReadOnlyCollection<FeatureFlag>? featureFlags;
+
+    protected override async Task OnInitializedAsync()
+    {
+        featureFlags = await FeaturesDataService.GetFeatureFlagAsync();
+    }
+
+    private async Task ToggleFeature(int featureId)
+    {
+        await FeaturesDataService.Toggle(featureId);
+        featureFlags = await FeaturesDataService.GetFeatureFlagAsync().ConfigureAwait(false);
+        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: false);
+    }
+
+}
+

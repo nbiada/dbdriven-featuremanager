@@ -4,40 +4,40 @@
 
 <PageTitle>Fetch Data From DB</PageTitle>
 
-<h1>Fetch Data</h1>
-
 <div class="container-fluid p-4">
+    <h1>Fetch Data</h1>
+
     <p>This component demonstrates fetching data from the server.</p>
     <table class="table table-responsive">
         <thead>
-            <tr>
-                <th>Feature</th>
-                <th>Enabled</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Country</th>
+        </tr>
         </thead>
         <tbody>
-            @if (featureFlags != null)
+        @if (_countries != null)
+        {
+            @foreach (var item in _countries)
             {
-                @foreach (var feature in featureFlags)
-                {
-                    <tr>
-                        <td>@feature.Name</td>
-                        <td>@feature.Enabled.ToString()</td>
-                    </tr>
-                }
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                </tr>
             }
+        }
         </tbody>
     </table>
 </div>
 
 @code {
-    [Inject] IFetchDataService FetchDataService { get; set; } = null!;
+    [Inject] ICountryDataService CountryDataService { get; set; } = null!;
 
-    private IReadOnlyCollection<FeatureFlag>? featureFlags;
+    private IReadOnlyCollection<Country>? _countries;
 
     protected override async Task OnInitializedAsync()
     {
-        featureFlags = await FetchDataService.GetFeatureFlagAsync();
+        _countries = await CountryDataService.Get();
     }
 
 }
