@@ -10,18 +10,6 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-<div class="container mt-2">
-    <Feature Name="@FeatureConstants.Counter">
-        <p >Counter ON</p>
-    </Feature>
-    <Feature Name="@FeatureConstants.FetchData">
-        <p >FetchData ON</p>
-    </Feature>
-    <Feature Name="@FeatureConstants.Weather">
-        <p >Weather ON</p>
-    </Feature>
-</div>
-
 @code {
     // [Inject] IFeatureManager FeatureManager { get; set; }
     // [Inject] NavigationManager NavigationManager { get; set; }

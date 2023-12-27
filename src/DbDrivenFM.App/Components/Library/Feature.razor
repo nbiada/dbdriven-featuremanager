@@ -15,11 +15,6 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        await Check();
-    }
-
-    private async Task Check()
-    {
         FeatureIsEnabled = false;
 
         if (string.IsNullOrEmpty(Name)) return;

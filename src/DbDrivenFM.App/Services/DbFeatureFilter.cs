@@ -28,7 +28,3 @@ namespace DbDrivenFM.App.Services
     }
 }
 
-/*
- string sqlQuery = ((ObjectQuery)context.Thingies
-        .Where(t => t.Name == "ThingamaBob")).ToTraceString();
-*/

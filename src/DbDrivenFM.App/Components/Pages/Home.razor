@@ -10,11 +10,11 @@
     <h1>DB Driven Feature Manager</h1>
 
     <p>This component demonstrates how to enable/disable feature flags using a database as backend.</p>
-    <table class="table table-responsive">
+    <table class="table align-middle">
         <thead>
             <tr>
                 <th>Feature</th>
-                <th>Enabled</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -25,7 +25,7 @@
                 {
                     <tr>
                         <td>@feature.Name</td>
-                        <td>@feature.Enabled.ToString()</td>
+                        <td>@((MarkupString)feature.Status())</td>
                         <td><button type="button" class="btn btn-outline-primary" 
                                     @onclick="() => ToggleFeature(feature.Id)">Toggle</button></td>
                     </tr>

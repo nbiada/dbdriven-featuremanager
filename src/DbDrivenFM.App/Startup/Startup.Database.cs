@@ -1,6 +1,4 @@
-﻿using DbDrivenFM.App.Components.Account;
-using DbDrivenFM.App.Data;
-using Microsoft.AspNetCore.Identity;
+﻿using DbDrivenFM.App.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace DbDrivenFM.App.Startup
