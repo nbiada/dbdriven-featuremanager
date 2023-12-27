@@ -1,11 +1,13 @@
 ﻿@using DbDrivenFM.App.Components.Account.Shared
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
-        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)">
-            <NotAuthorized>
-                <RedirectToLogin />
-            </NotAuthorized>
-        </AuthorizeRouteView>
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        <FeatureAuthorizeWrapper PageType="@routeData.PageType">
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)">
+                <NotAuthorized>
+                    <RedirectToLogin/>
+                </NotAuthorized>
+            </AuthorizeRouteView>
+        </FeatureAuthorizeWrapper>
+        <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
     </Found>
 </Router>

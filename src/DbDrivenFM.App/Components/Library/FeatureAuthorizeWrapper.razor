@@ -1,0 +1,21 @@
+@using DbDrivenFM.App.Services
+@inject FeatureGateService FeatureGateService
+@code {
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public Type PageType { get; set; }
+    private bool IsAuthorized { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        IsAuthorized = await FeatureGateService.AuthorizeAsync(PageType);
+    }
+}
+
+@if (IsAuthorized)
+{
+    @ChildContent
+}
+else
+{
+    <p>You are not authorized to view this page.</p>
+}

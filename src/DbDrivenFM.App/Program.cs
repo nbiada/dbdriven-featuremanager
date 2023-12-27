@@ -25,6 +25,7 @@ builder.Services.AddScoped<IFeaturesDataService, FeaturesDataService>();
 // Register the custom Feature Manager
 //  - this is the Db driven implementations of the Feature Manager 
 builder.Services.AddScoped<IFeatureManager, DbFeatureManager>();
+builder.Services.AddScoped<FeatureGateService>();
 
 // Register application services
 builder.Services.AddScoped<ICountryDataService, CountryDataService>();

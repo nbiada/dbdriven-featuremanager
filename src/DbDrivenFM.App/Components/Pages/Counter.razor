@@ -1,5 +1,6 @@
 ﻿@page "/counter"
 @rendermode InteractiveServer
+@attribute [FeatureGate(FeatureConstants.Counter)]
 
 <PageTitle>Counter</PageTitle>
 
@@ -9,20 +10,32 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<div class="container mt-2">
+    <Feature Name="@FeatureConstants.Counter">
+        <p >Counter ON</p>
+    </Feature>
+    <Feature Name="@FeatureConstants.FetchData">
+        <p >FetchData ON</p>
+    </Feature>
+    <Feature Name="@FeatureConstants.Weather">
+        <p >Weather ON</p>
+    </Feature>
+</div>
+
 @code {
-    [Inject] IFeatureManager FeatureManager { get; set; }
-    [Inject] NavigationManager NavigationManager { get; set; }
+    // [Inject] IFeatureManager FeatureManager { get; set; }
+    // [Inject] NavigationManager NavigationManager { get; set; }
     
     private int currentCount = 0;
 
-    protected override async Task OnInitializedAsync()
-    {
-        if (!(await FeatureManager.IsEnabledAsync(FeatureConstants.Counter)))
-        {
-            NavigationManager.NavigateTo("", true);
-            return;
-        }
-    }
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     if (!(await FeatureManager.IsEnabledAsync(FeatureConstants.Counter)))
+    //     {
+    //         NavigationManager.NavigateTo("", true);
+    //         return;
+    //     }
+    // }
 
     private void IncrementCount()
     {

@@ -1,5 +1,3 @@
-using DbDrivenFM.App.Components.Account.Pages.Manage;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
